@@ -13,7 +13,10 @@
 */
 function setup() {
 
-}
+   createCanvas (640,640);
+
+   }
+
 
 
 /**
@@ -21,4 +24,12 @@ function setup() {
 */
 function draw() {
 
+    background(0);
+
+    //Draw the circle
+    push();
+    fill(mouseX,mouseY,0);
+    noStroke();
+    ellipse(mouseX,mouseY/2,100,100);
+    pop();
 }
