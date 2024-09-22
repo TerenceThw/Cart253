@@ -23,8 +23,15 @@ const creature = {
     fills: {
         bored: "#000000", // Black
         happy: "#33cc33", // Green
-        angry: "#cc3333" // Red
-    }
+        angry: "#cc3333",// Red
+        dead:  "#777777" // Grey
+    },
+    //is the creature alive
+    alive: true,
+    //how bored is the creature?
+    boredomLevel: 0,
+    //how bored can it get before it die?
+    deathByBoredomThreshold:500,
 };
 
 /**
@@ -49,6 +56,10 @@ function draw() {
  */
 function checkInput() {
 
+    if (!creature.alive){
+        return;
+    }
+
     const distance = dist(mouseX, mouseY, creature.x,creature.y);
     const mouseOverLapsCreature = (distance < creature.size/2);
 
@@ -59,7 +70,14 @@ function checkInput() {
 }
 else {
     creature.fill = creature.fills. bored;
-
+    //creature gget a little bit more bored
+    creature.boredomLevel +=1;
+    if (creature.boreddomLevel > creature.deathByBoredomThreshold){
+        //creeature dies of boredom
+        creature.alive = false;
+        //creature looks dead
+        creature.fill = creature.fills.dead;
+    }
 }
 }
 
