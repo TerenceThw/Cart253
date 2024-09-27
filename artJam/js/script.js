@@ -3,7 +3,7 @@
  * Terence Tamg
  * 
  * you, as a scientist, try to save the world from 
- * letting the virus escape from the lab. You can either do nothing 
+ * letting the virus escape  the lab. You can either do nothing 
  * or try to stop the virus from spreading among the public.
  * 
  * contorls:
@@ -75,8 +75,8 @@ function draw() {
 //create a new virus with diffrent random variables
 function  createVirus(){
    let virus= {
-        x: random(0,100),
-        y: random(0,100),
+        x: mouseX,
+        y: mouseY,
         size: random(50,400),
         xDirection: random(0.5,5),   //need to modify
         yDirection: random(0.5,5),   //need to mdify
