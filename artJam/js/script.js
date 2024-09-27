@@ -16,20 +16,25 @@
 
 "use strict";
 
-// create the arraly of virus
+// created the arraly of virus
 // There will be one virus when the game starts
-let vrius =[
+let viruses =[
     {
         x: 300,
         y: 300,
-        size: 100
-    },
-]
+        size: 100,
 
+    fill:{
+        r:0,  //the color red, a value will be add later 
+        g:0,  //the color green, a value will be add later 
+        b:0   //the color blue, a value will be add later 
+    }
+    }
+];
 
 
 /**
- * OH LOOK I DIDN'T DESCRIBE SETUP!!
+ *  created a 600x600 canvas
 */
 function setup() {
     createCanvas(600,600);
@@ -37,8 +42,14 @@ function setup() {
 
 
 /**
- * OOPS I DIDN'T DESCRIBE WHAT MY DRAW DOES!
+ * move and display the viruses
 */
 function draw() {
     background("#000000");
+    // go through all the virus
+    for (let virus of viruses){
+        moveVirus(virus);
+        drawVirus(virus);
+    }
 }
+
