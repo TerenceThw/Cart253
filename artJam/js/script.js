@@ -3,7 +3,7 @@
  * Terence Tamg
  * 
  * you, as a scientist, try to save the world from 
- * letting the virus explode. You can either do nothing 
+ * letting the virus escape from the lab. You can either do nothing 
  * or try to stop the virus from spreading among the public.
  * 
  * contorls:
@@ -23,15 +23,22 @@ let viruses =[
         x: 300,
         y: 300,
         size: 100,
-        
+        xDirection: 1, //need to be change
+        yDirection: 0.5, //need to be change
 
     fill:{
-        r:0,  //the color red, a value will be add later 
+        r:200,  //the color red, a value will be add later 
         g:0,  //the color green, a value will be add later 
-        b:0   //the color blue, a value will be add later 
+        b:100   //the color blue, a value will be add later 
     }
     }
 ];
+
+//check if the game is over 
+let gameOver = false;
+
+//the maximum amount of virus we can have
+let maxViruses = 30;
 
 
 /**
@@ -50,12 +57,21 @@ function draw() {
     background("#000000");
 
     // go through all the virus
+    if(!gameOver){
     for (let virus of viruses){
         moveVirus(virus);
         drawVirus(virus);
     }
+} else {              //this message will be show when the game end
+    fill(255,0,0);
+    textSize(25);
+    textAlign(CENTER,CENTER);
+    text(" and humanity is in for a rough ride.",width/2,height/2 );
+    text("You tried your best, but the virus is now free,",width/2,height/2-30 );
+
 }
 
+}
 //create a new virus with diffrent random variables
 function  createVirus(){
    let virus= {
@@ -76,10 +92,13 @@ function  createVirus(){
 
 //make the mouse interact with the virus
 function mousePressed(){
-    if(viruses.length<40){           //virus will be add whenever you click the virus, until virus reach 29
+    if(viruses.length<maxViruses){           //virus will be add whenever you click the virus, until virus reach 29
         let virus =createVirus();
         viruses.push(virus);
 
+    }
+    else if(viruses.length==maxViruses){
+        gameOver= true;  // the game is over
     }
 }
 
@@ -95,7 +114,7 @@ function moveVirus(virus){
 // draw the virus
 function drawVirus(virus){
     push();
-    fill (virus.fill.r,virus.fill.g,virus.fill.b);    //need to modify!
+    fill (virus.fill.r,virus.fill.g,virus.fill.b);   //ach virus will have a different color
     ellipse(virus.x, virus.y, virus.size);
     pop();
 
