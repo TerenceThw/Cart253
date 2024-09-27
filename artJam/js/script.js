@@ -23,7 +23,7 @@ let viruses =[
         x: 300,
         y: 300,
         size: 100,
-        speed: 5
+        
 
     fill:{
         r:0,  //the color red, a value will be add later 
@@ -39,6 +39,7 @@ let viruses =[
 */
 function setup() {
     createCanvas(600,600);
+    
 }
 
 
@@ -58,18 +59,24 @@ function draw() {
 //create a new virus with diffrent random variables
 function  createVirus(){
    let virus= {
-        x: random(0,width),
-        y: random(0,height),
-        size: random(10,250),
-        direction: random(2,5),   //modify this late on !
+        x: random(0,100),
+        y: random(0,100),
+        size: random(50,400),
+        xDirection: random(0.5,5),   //need to modify
+        yDirection: random(0.5,5),   //need to mdify
+        fill:{
+            r: random(50,255),
+            g: random(50,255),
+            b: random(50,255)
 
+        }
    } ;
         return virus;
 }
 
 //make the mouse interact with the virus
 function mousePressed(){
-    if(viruses<30){           //virus will be add whenever you click the virus, until virus reach 29
+    if(viruses.length<40){           //virus will be add whenever you click the virus, until virus reach 29
         let virus =createVirus();
         viruses.push(virus);
 
@@ -78,7 +85,19 @@ function mousePressed(){
 
 //viruses will be moving randomly according to the direction
 function moveVirus(virus){
-    virus.x+= random(-speed,speed);
-    virus.y+= random(-speed,speed);
+    virus.x+= random(virus.xDirection);   //need to modify
+    virus.y+= random(virus.yDirection);   //need to modify
+    
+
+}
+
+
+// draw the virus
+function drawVirus(virus){
+    push();
+    fill (virus.fill.r,virus.fill.g,virus.fill.b);    //need to modify!
+    ellipse(virus.x, virus.y, virus.size);
+    pop();
+
 }
 
