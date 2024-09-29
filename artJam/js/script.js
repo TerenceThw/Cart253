@@ -38,7 +38,16 @@ let viruses =[
 let gameOver = false;
 
 //the maximum amount of virus we can have
-let maxViruses = 30;
+let maxViruses = 20;
+
+//message for ending 1
+let message1 = "After managing to stop the virus, \nyou notice—almost casually—you’ve been infected. \nIn the quiet of the lab, \nyou straighten your coat, \nknowing the world outside will go on, without you.";
+    
+
+// message for ending2 
+let message2 = "You gave it your all, but the virus has escaped, \nleaving humanity to embark on a \ndelightfully chaotic journey ahead."; 
+
+
 
 
 /**
@@ -61,17 +70,29 @@ function draw() {
     for (let virus of viruses){
         moveVirus(virus);
         drawVirus(virus);
-    }
-} else {              //this message will be show when the game end
-    fill(255,0,0);
-    textSize(25);
+
+        if (!mousePressed && !timeSet){  
+            timeSet= true;      // count the time if the mouse is not pressed
+            setTimeout(() => {
+                showText()
+              }, 7000); 
+              
+            }
+
+
+        }
+
+
+    } else if(gameOver){              //this message will be show when the player reach ending 2
+    fill(255,0,100);
+    textSize(20);
     textAlign(CENTER,CENTER);
-    text(" and humanity is in for a rough ride.",width/2,height/2 );
-    text("You tried your best, but the virus is now free,",width/2,height/2-30 );
+    text(message2,width/2,height/2-30 );
 
 }
-
 }
+
+
 //create a new virus with diffrent random variables
 function  createVirus(){
    let virus= {
@@ -92,31 +113,43 @@ function  createVirus(){
 
 //make the mouse interact with the virus
 function mousePressed(){
-    if(viruses.length<maxViruses){           //virus will be add whenever you click the virus, until virus reach 29
+    if(viruses.length<maxViruses){           //virus will be add whenever you click the virus, until virus reach 20
         let virus =createVirus();
         viruses.push(virus);
 
     }
-    else if(viruses.length==maxViruses){
+    else if(viruses.length==maxViruses){       //game is over when there are 20 viruses
         gameOver= true;  // the game is over
     }
 }
 
 //viruses will be moving randomly according to the direction
 function moveVirus(virus){
+
     virus.x+= random(virus.xDirection);   //need to modify
     virus.y+= random(virus.yDirection);   //need to modify
     
-
 }
 
 
 // draw the virus
 function drawVirus(virus){
+
     push();
-    fill (virus.fill.r,virus.fill.g,virus.fill.b);   //ach virus will have a different color
+    fill (virus.fill.r,virus.fill.g,virus.fill.b);   //each virus will have a different color
     ellipse(virus.x, virus.y, virus.size);
     pop();
 
 }
 
+// show the first ending text meessage 
+  function showText(){
+    rectMode(CENTER);
+  fill("ff0000");
+  textAlign(CENTER, CENTER);
+  text(message1, width/2, height/2);
+  pop();
+
+
+
+}
