@@ -71,8 +71,7 @@ function draw() {
         moveVirus(virus);
         drawVirus(virus);
 
-        if (!mousePressed && !timeSet){  
-            timeSet= true;      // count the time if the mouse is not pressed
+        if (!mousePressed){        // count the time if the mouse is not pressed
             setTimeout(() => {
                 showText()
               }, 7000); 
