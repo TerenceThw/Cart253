@@ -63,27 +63,22 @@ function setup() {
  * move and display the viruses
 */
 function draw() {
-    background("#000000");
+    let bgColorR =map(viruses.length,0,maxViruses, 0, 255);   //changing the bg color according to the amount of viruses
+    let bgColorG =map(viruses.length,0,maxViruses, 0, 100);   //changing the bg color according to the amount of viruses
+    let bgColorB =map(viruses.length,0,maxViruses, 0, 100);   //changing the bg color according to the amount of viruses
+
+    background(bgColorR,bgColorG,bgColorB);
 
     // go through all the virus
-    if(!gameOver){
+    if(!gameOver){                     //when there's less then 20 viruses in the game
     for (let virus of viruses){
         moveVirus(virus);
         drawVirus(virus);
 
-        if (!mousePressed){        // count the time if the mouse is not pressed
-            setTimeout(() => {
-                showText()
-              }, 7000); 
-              
-            }
-
-
         }
 
-
     } else if(gameOver){              //this message will be show when the player reach ending 2
-    fill(255,0,100);
+    fill('#00FF00');
     textSize(20);
     textAlign(CENTER,CENTER);
     text(message2,width/2,height/2-30 );
@@ -94,6 +89,7 @@ function draw() {
 
 //create a new virus with diffrent random variables
 function  createVirus(){
+
    let virus= {
         x: mouseX,
         y: mouseY,
@@ -101,9 +97,9 @@ function  createVirus(){
         xDirection: random(0.5,5),   //need to modify
         yDirection: random(0.5,5),   //need to mdify
         fill:{
-            r: random(50,255),
-            g: random(50,255),
-            b: random(50,255)
+            r: random(0,255),
+            g: random(0,255),
+            b: random(0,255)
 
         }
    } ;
@@ -124,7 +120,6 @@ function mousePressed(){
 
 //viruses will be moving randomly according to the direction
 function moveVirus(virus){
-
     virus.x+= random(virus.xDirection);   //need to modify
     virus.y+= random(virus.yDirection);   //need to modify
     
@@ -143,12 +138,13 @@ function drawVirus(virus){
 
 // show the first ending text meessage 
   function showText(){
+    push();
     rectMode(CENTER);
-  fill("ff0000");
-  textAlign(CENTER, CENTER);
-  text(message1, width/2, height/2);
-  pop();
-
-
+    fill(0,0,0);
+    textAlign(CENTER, CENTER);
+    text(message1, width/2, height/2);
+    pop();
 
 }
+
+
