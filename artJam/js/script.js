@@ -39,6 +39,9 @@ let gameOver = false;     //check if the game is over
 
 let maxViruses = 20;     //the maximum amount of virus we can have
 
+
+let timer =5;            // count the time
+
 //message for ending 1
 let message1 = "After managing to stop the virus, \nyou notice—almost casually—you’ve been infected. \nIn the quiet of the lab, \nyou straighten your coat, \nknowing the world outside will go on, without you.";
     
@@ -74,18 +77,7 @@ function draw() {
         moveVirus(virus);
         drawVirus(virus);
 
-        if (!mousePressed){
-            setTimeout(() =>{
-                showText()
-            }, 7000);
         }
-            
-
-        }
-
-
-
-        
 
     } else if(gameOver){              //this message will be show when the player reach ending 2
     fill('#00FF00');
@@ -94,6 +86,18 @@ function draw() {
     text(message2,width/2,height/2-30 );
 
 }
+
+    if(frameCount%60==0&&timer>0){              //if the frameCount is divide by 60, then one second has passed. it will stopat 0
+        timer--;
+    }
+
+    if(timer<=0){
+        textSize(20);
+        fill('#00FF00');
+        textAlign(CENTER,CENTER);
+        text(message1,width/2,height/2-30);
+
+    }
 }
 
 /** 
