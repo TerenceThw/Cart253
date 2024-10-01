@@ -34,17 +34,20 @@ let viruses =[
     }
     }
 ];
+//now its going to be game over is either play or end1 or end2
+let gameOver = "play";     //check if the game is over 
 
-let gameOver = false;     //check if the game is over 
+let bgColorR=0;         //set a random backgraound color (red)
+
+let bgColorG=0;         //set a random backgraound color (Green)
+
+let bgColorB=0;        //set a random backgraound color (Blue)
 
 let showInfoMessage = true;   //make the info message stay when the infoTimmer is higher then 0
 
-
 let maxViruses = 20;     //the maximum amount of virus we can have
 
-let infoTimer = 4;      //cout the time when will the info message dissapear
-
-
+let infoTimer = 5;      //cout the time when will the info message dissapear
 
 let timer =10;            // count the time when will the first ending pop out
 
@@ -76,15 +79,17 @@ function setup() {
 function draw() {
 
     cursor(HAND);
-    let bgColorR =map(viruses.length,0,maxViruses, 0, 255);   //changing the bg color according to the amount of viruses
-    let bgColorG =map(viruses.length,0,maxViruses, 0, 100);   //changing the bg color according to the amount of viruses
-    let bgColorB =map(viruses.length,0,maxViruses, 0, 100);   //changing the bg color according to the amount of viruses
+    bgColorR =map(viruses.length,0,maxViruses, 0, 255);   //changing the bg color according to the amount of viruses
+    bgColorG =map(viruses.length,0,maxViruses, 0, 100);   //changing the bg color according to the amount of viruses
+    bgColorB =map(viruses.length,0,maxViruses, 0, 100);   //changing the bg color according to the amount of viruses
 
     background(bgColorR,bgColorG,bgColorB);
 
     //make the info message stary for 7 secs
-    if(showInfoMessage){
-        if (frameCount%60==0){
+    
+    if(infoTimer!=0){                                   // Show the info message if the infoTimer is not 0   
+        showInfoMessage=true;
+        if (frameCount%60===0){
             infoTimer--;
         }
     
@@ -93,36 +98,35 @@ function draw() {
         textAlign(CENTER,CENTER);
         text(infomessage,width/2,height/2-30);
 
-    }
-    else if(infoTimer<=0){
+    } else{
         showInfoMessage=false;
-
     }
-
-
-
+        
 
     // go through all the virus
-    if(!gameOver){                     //when there's less then 20 viruses in the game
+    if(gameOver==="play"){   //when there's less then 20 viruses in the game
+                         
     for (let virus of viruses){
         moveVirus(virus);
         drawVirus(virus);
 
         }
 
-    } else if(gameOver){              //this message will be show when the player reach ending 2
-    fill('#b30000');
-    textSize(20);
-    textAlign(CENTER,CENTER);
-    text(message2,width/2,height/2-30 );
-
+    } else if(gameOver==="end2"){              //this message will be show when the player reach ending 2
+        fill('#b30000');
+        textSize(20);
+        textAlign(CENTER,CENTER);
+        text(message2,width/2,height/2-30 );
+    
 }
 
-    if(frameCount%60==0&&timer>0){              //if the frameCount is divide by 60, then one second has passed. it will stop at 0
+    if(frameCount%60==0&&timer>0 &&gameOver==="play"){      //if the frameCount is divide by 60, then one second has passed. it will stop at 0
+                                           
         timer--;
     }
 
     if(timer<=0){
+        gameOver="end1";
         textSize(20);
         fill('#ff00ff');
         textAlign(CENTER,CENTER);
@@ -163,7 +167,7 @@ function mousePressed(){
 
     }
     else if(viruses.length==maxViruses){       //game is over when there are 20 viruses
-        gameOver= true;  // the game is over
+        gameOver= "end2";  // the game is over
     }
 }
 
@@ -188,17 +192,35 @@ function drawVirus(virus){
 
 }
 
-/** 
-*show the Front Page
-*/
-function FrontPage(){
-    push();
-    rectMode(CENTER);
-    fill(0,0,0);
-    textAlign(CENTER, CENTER);
-    text(intromessage, width/2, height/2);
-    pop();
+function keyPressed (event){
+    console.log(timer);
+ if(gameOver==="end1"||gameOver==="end2" && event.keyCode === ENTER){
+    reset();
+    // console.log(timer);
+ }
 
 }
 
-
+function reset(){
+    infoTimer = 4;      //cout the time when will the info message dissapear
+    timer =10;          //back to the original setting
+    // console.log(timer);
+    gameOver = "play"; 
+    showInfoMessage = true;
+    background(bgColorR,bgColorG,bgColorB);
+    viruses =[
+        {
+            x: 300,
+            y: 300,
+            size: 100,
+            xDirection: 1,   //need to be change
+            yDirection: 0.5, //need to be change
+    
+        fill:{
+            r:200,  //the color red, a value will be add later 
+            g:0,    //the color green, a value will be add later 
+            b:100   //the color blue, a value will be add later 
+        }
+        }
+    ];
+}
