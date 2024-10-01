@@ -58,7 +58,7 @@ let message1 = "After managing to stop the virus, \nyou notice—almost casually
     
 
 // message for ending2 
-let message2 = "You gave it your all, but the virus has escaped, \nleaving humanity to embark on a \ndelightfully chaotic journey ahead."; 
+let message2 = "You gave it your all, but the virus has escaped, \nleaving humanity to embark on a \ndelightfully chaotic journey ahead. \nenter ENTER to restart"; 
 
 
 
