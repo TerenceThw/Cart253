@@ -5,7 +5,7 @@ Terence Tang
 [View this project online](URL_FOR_THE_RUNNING_PROJECT)
 
 ## Description
-This is a game, which you have to decide if you will clik the mouse or not.
+This is a game, which you have to decide if you are goingto clik the mouse or not.
 
 ## Credits
 

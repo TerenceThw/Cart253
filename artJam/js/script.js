@@ -47,20 +47,19 @@ let showInfoMessage = true;   //make the info message stay when the infoTimmer i
 
 let maxViruses = 20;     //the maximum amount of virus we can have
 
-let infoTimer = 5;      //cout the time when will the info message dissapear
+let infoTimer = 6;      //cout the time when will the info message dissapear
 
-let timer =10;            // count the time when will the first ending pop out
+let timer =12;            // count the time when will the first ending pop out
 
 //instruction message
 let infomessage="The virus seems to be multiplying—rapidly, \nalmost enthusiastically. \nIt’s seconds from escaping, \nand here I am, standing in a sterile lab, \npondering one simple choice: \nclick the mouse and stop it, or, \nquite simply, do nothing at all. \nClick or not to click—that’s the question.";
 
 //message for ending 1
-let message1 = "After managing to stop the virus, \nyou notice—almost casually—you’ve been infected. \nIn the quiet of the lab, \nyou straighten your coat, \nknowing the world outside will go on, without you.";
+let message1 = "After managing to stop the virus, \nyou notice—almost casually—you’ve been infected. \nIn the quiet of the lab, \nyou straighten your coat, \nknowing the world outside will go on, without you.\nenter ENTER to restart";
     
 
 // message for ending2 
 let message2 = "You gave it your all, but the virus has escaped, \nleaving humanity to embark on a \ndelightfully chaotic journey ahead."; 
-
 
 
 
@@ -145,8 +144,8 @@ function  createVirus(){
         x: mouseX,
         y: mouseY,
         size: random(50,400),
-        xDirection: random(0.5,5),   //need to modify
-        yDirection: random(0.5,5),   //need to mdify
+        xDirection: random(0.5,5),   
+        yDirection: random(0.5,5),   
         fill:{
             r: random(0,255),
             g: random(0,255),
@@ -175,8 +174,8 @@ function mousePressed(){
 *viruses will be moving randomly according to the direction
 */
 function moveVirus(virus){
-    virus.x+= random(virus.xDirection);   //need to modify
-    virus.y+= random(virus.yDirection);   //need to modify
+    virus.x+= random(virus.xDirection);    
+    virus.y+= random(virus.yDirection);   
     
 }
 
@@ -192,11 +191,10 @@ function drawVirus(virus){
 
 }
 
-function keyPressed (event){
-    console.log(timer);
+function keyPressed (event){                         // a keypress for restarting the game
+
  if(gameOver==="end1"||gameOver==="end2" && event.keyCode === ENTER){
     reset();
-    // console.log(timer);
  }
 
 }
@@ -206,7 +204,6 @@ function reset(){
     timer =10;          //back to the original setting
     // console.log(timer);
     gameOver = "play"; 
-    showInfoMessage = true;
     background(bgColorR,bgColorG,bgColorB);
     viruses =[
         {
