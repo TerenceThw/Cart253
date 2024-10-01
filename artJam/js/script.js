@@ -24,8 +24,7 @@ let viruses =[
         x: 300,
         y: 300,
         size: 100,
-        xDirection: 1,   //need to be change
-        yDirection: 0.5, //need to be change
+        xDirection: 1,   
 
     fill:{
         r:200,  //the color red, a value will be add later 
@@ -34,7 +33,7 @@ let viruses =[
     }
     }
 ];
-//now its going to be game over is either play or end1 or end2
+
 let gameOver = "play";     //check if the game is over 
 
 let bgColorR=0;         //set a random backgraound color (red)
