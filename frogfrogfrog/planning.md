@@ -1,5 +1,17 @@
 # Planning
 
+#new features
+1) score
+2) background is black at the begining, you ahve to press space in order to make the frog shine so to see what's happening
+3) frog color become brighter when user press space and get draker if the player stop pressing a 
+4) create poisioned object that will ocationally fly around 
+5) if frog eat what it's not supposed to eat, it die
+
+
+
+
+
+
 ## Starting point
 
 The initial idea:

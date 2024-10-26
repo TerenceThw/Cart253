@@ -92,7 +92,18 @@ function drawFrog(){
 }
 
 function checkTongueFlyOverLap(){
+    let d = dist(frog.tongue.x, frogue.tongue.y, fly.x, fly.y);
+    if (d< frog.tongue.size/2+fly.size/2){
+        fly.x =0;
+        fly.random(100,400);
+        frog.tongue.state="inbound";
 
+    }
+}
 
-    
+function mousePressed(){
+    if (frog.tongue.state === "idle") {
+        frog.tongue.state = "outbound";
+    }
+
 }
