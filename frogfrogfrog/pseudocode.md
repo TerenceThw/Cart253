@@ -79,4 +79,20 @@ function moveTongue(){
 }
 
 
-function
+function drawFrog(){
+    stroke (255,0,0);
+    strokeWeight(frog.tongue.size);
+    ellipse(frog.tongue.x, frog.tongue.y,frog.tongue.size);
+    line(frog.x, frog.y, frog.tongue.x, frog.tongue.y);
+
+    noStroke();
+    fill(0,255,0);                           //adjust this later for the frog color
+    ellipse(frog.x, frog.y-frog.size/2,frog.size);
+
+}
+
+function checkTongueFlyOverLap(){
+
+
+    
+}
