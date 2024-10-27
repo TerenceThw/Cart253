@@ -33,14 +33,14 @@ let backgroundRGB ={                                          //its now set in b
     Timer: 20
 };
 
-let showInfoMessage =true; // make sure the information message stay when the timmer is higher then 0
-let infoTimer =12  ;               // timer set to count when the instruction message will disappear
+let showInfoMessage =true;                                   // make sure the information message stay when the timmer is higher then 0
+let infoTimer =12  ;                                         // timer set to count when the instruction message will disappear
 let instruction ="You’re a frog. Your mission? Catch flies. \nSimply move your mouse to glide, then click to snap \nyour tongue and snag a tasty fly. \nEach catch earns you one point. Press the spacebar to light up \nyour surroundings and see the flies better. But beware: \nnot everything in the air is edible! Stick to flies only, \nor you may regret your choice of snack.";   // the game instruction
 
 let appleImg;
 
 function preload(){
-    appleImg = loadImg('newApple-Logo.png');
+    appleImg = loadImage('newApple-Logo.png');                //load the image        
 }
 
 
@@ -115,18 +115,27 @@ function resetFlyPosition(){                   //assign new fly to a random dire
 }
 
 function appleOrFly(){
-    let randomNumber = int(random(1,10));     //create a set of random numbers
+    let randomNumber = int(random(1,3));  
+    console.log("Generated Random Number: " + randomNumber);   //create a set of random numbers
 
-    if (randomNumber ===5){                   //if the random number being pick is 5, then fly become an apple!
+    if (randomNumber ===2){                   //if the random number being pick is 5, then fly become an apple!
         fly.isApple =true;
 
+    } else{
+        fly.isApple= false;
     }
 }
 
 function drawFlyOrObject(){
-    fill(0);
-    ellipse(fly.x, fly.y, fly.size);
 
+    if(fly.isApple===true){                      //display the apple
+        image(appleImg,fly.x,fly.y,fly.size*7,fly.size*4)
+    }                    
+
+    else if(fly.isApple===false){                //display the fly
+        fill(0);
+        ellipse(fly.x, fly.y, fly.size);
+    }
 }
 
 function moveFrog(){
@@ -169,6 +178,7 @@ function  checkTongueFlyOverlap(){
     if (d< frog.tongue.size/2+fly.size/2){
         fly.x =0;
         fly.y= random(100,400);
+        appleOrFly();
         frog.tongue.state="inbound";
 
     }
