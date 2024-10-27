@@ -23,11 +23,16 @@ let fly ={
     speed: 3
 };
 
+let showInfoMessage =true; // make sure the information message stay when the timmer is higher then 0
+let infoTimer =6;               // timer set to count when the instruction message will disappear
+let instruction ="hello world";   // the game instruction
 
-fuction setup(){
+
+function setup(){
 
     createCanvas(640,480);
 }
+
 
 
 function draw(){
@@ -37,15 +42,34 @@ function draw(){
     drawFly();
     moveFrog();
     moveTongue();
-    drawFrong();
+    drawFrog();
     checkTongueFlyOverlap();
+
+    if(infoTimer >0){                          //the instruction page
+        if(frameCount % 60 === 0){
+
+            infoTimer--;
+        }
+    } else{
+        showInfoMessage=false;
+    }
+
+    if (showInfoMessage){
+        textSize(20);
+        fill(0);
+        textAlign(CENTER,CENTER);
+        text(instruction,width/2,height/2-30);
+
+
+    }
+
 }
 
 function moveFly(){
 
     fly.x += fly.speed;
     if (fly.x >width){
-        fly.x =o;
+        fly.x =0;
         fly.y = random(200,400);      //random y location  of the fly 
     }
 }
@@ -57,15 +81,15 @@ function drawFly(){
 }
 
 function moveFrog(){
-    frog.x = mouse.X;
+    frog.x = mouseX;
 
 }
 
 function moveTongue(){
-    tongue.x = frog.x;
-    if (frog.tongue state==="outbound"){
+    frog.tongue.x = frog.x;
+    if (frog.tongue.state==="outbound"){
         frog.tongue.y-= frog.tongue.speed;
-        if(frog.tongue.y<=0>){
+        if(frog.tongue.y<=0){
             frog.tongue.state ="inbound";
         }
 
@@ -92,10 +116,10 @@ function drawFrog(){
 }
 
 function checkTongueFlyOverLap(){
-    let d = dist(frog.tongue.x, frogue.tongue.y, fly.x, fly.y);
+    let d = dist(frog.tongue.x, frog.tongue.y, fly.x, fly.y);
     if (d< frog.tongue.size/2+fly.size/2){
         fly.x =0;
-        fly.random(100,400);
+        fly.y= random(100,400);
         frog.tongue.state="inbound";
 
     }
