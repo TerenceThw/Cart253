@@ -1,3 +1,7 @@
+
+let gameOver =false;                                       //false, becasue the game is not over yet.
+
+
 let frog = {
 
     x:320,
@@ -52,6 +56,11 @@ function setup(){
 
 
 function draw(){
+
+    if (gameOver===true){
+        gameOverMessage();                     //show the gameover message
+        return;
+    }
 
     background(backgroundRGB.r, backgroundRGB.g, backgroundRGB.b);
     moveFly();
@@ -116,9 +125,8 @@ function resetFlyPosition(){                   //assign new fly to a random dire
 
 function appleOrFly(){
     let randomNumber = int(random(1,3));  
-    console.log("Generated Random Number: " + randomNumber);   //create a set of random numbers
 
-    if (randomNumber ===2){                   //if the random number being pick is 5, then fly become an apple!
+    if (randomNumber ===2){                   //if the random number being pick is 2, then fly become an apple!
         fly.isApple =true;
 
     } else{
@@ -176,12 +184,17 @@ function drawFrog(){
 function  checkTongueFlyOverlap(){
     let d = dist(frog.tongue.x, frog.tongue.y, fly.x, fly.y);
     if (d< frog.tongue.size/2+fly.size/2){
-        fly.x =0;
+        if(fly.isApple===true){                          //lead to the gameOverMessage  function
+            gameOverMessage();
+        }
+        else {
+
+            fly.x =0;
         fly.y= random(100,400);
         appleOrFly();
         frog.tongue.state="inbound";
-
-    }
+        }
+}
 }
 
 function mousePressed(){
@@ -200,4 +213,14 @@ function keyPressed(){
     frog.color.g = min(frog.color.g+127.5);    
     frog.Timer =20;                                      //change the frog's color by adding 127.5  
     }
+}
+
+function gameOverMessage() {                             //show the gameOver message 
+    gameOver =true;
+    background(0);
+    textSize(20);
+    fill(255,0,0);
+    textAlign(CENTER,CENTER);
+    text("GAME OVER! \nMaybe be more careful what you eat in your next life. \nAssuming, of course, you even get one… \n(Seriously, why on Earth would you eat a bitten apple?)", width/2, height/2);
+
 }
