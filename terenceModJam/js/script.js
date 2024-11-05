@@ -53,7 +53,7 @@ function setup(){
     createCanvas(640,480);
 
     restartButton = createButton('RESTART GAME');           //create button to restart the game
-    restartButton.position(width/2+450, height/2+300);     // i just test and adust the numbers in order to make it center 
+    restartButton.position(width/2+700 height/2+300);     // i just test and adust the numbers in order to make it center 
     restartButton.mousePressed(restartGame);
     restartButton.hide();                                   //hide the button until player see the game over message
 
