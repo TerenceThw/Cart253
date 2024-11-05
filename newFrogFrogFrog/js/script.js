@@ -1,6 +1,6 @@
 
 let gameOver =false;                                       //false, becasue the game is not over yet.
-
+let restartButton  = undefined;
 
 let frog = {
 
@@ -51,15 +51,24 @@ function preload(){
 function setup(){
 
     createCanvas(640,480);
+
+    restartButton = createButton('RESTART GAME');           //create button to restart the game
+    restartButton.position(width/2+380 , height/2+300);     // i just test and adust the numbers in order to make it center 
+    restartButton.mousePressed(restartGame);
+    restartButton.hide();                                   //hide the button until player see the game over message
+
 }
 
 
-
+ 
 function draw(){
 
     if (gameOver===true){
         gameOverMessage();                     //show the gameover message
+        restartButton.show();                  //show the restart button
         return;
+    }else {
+        restartButton.hide();
     }
 
     background(backgroundRGB.r, backgroundRGB.g, backgroundRGB.b);
@@ -210,7 +219,7 @@ function keyPressed(){
     backgroundRGB.b = min(backgroundRGB.b+50,255);
     backgroundRGB.Timer =20;
 
-    frog.color.g = min(frog.color.g+127.5);    
+    frog.color.g = min(frog.color.g+127.5);              
     frog.Timer =20;                                      //change the frog's color by adding 127.5  
     }
 }
@@ -222,5 +231,54 @@ function gameOverMessage() {                             //show the gameOver mes
     fill(255,0,0);
     textAlign(CENTER,CENTER);
     text("GAME OVER! \nMaybe be more careful what you eat in your next life. \nAssuming, of course, you even get one… \n(Seriously, why on Earth would you eat a bitten apple?)", width/2, height/2);
+
+}
+
+function restartGame(){
+
+        gameOver =false;
+
+
+        let frog = {
+
+            x:320,
+            y: 480,
+            size: 100,
+            Timer: 20,
+            color:{
+                g:0,
+            },
+            tongue: {
+                x: 20,
+                y: 480,
+                size: 20,
+                speed: 20,
+                state: "idle"
+            }
+        };
+        
+        let fly ={
+        
+            x: 0,
+            y: 200,
+            size: 10,
+            speed: 3,
+            isApple: false                                            
+        };
+
+        let backgroundRGB ={                                          
+
+            r: 0,
+            g: 0,
+            b: 0,
+            Timer: 20
+        };
+
+        showInfoMessage = true;
+        infoTimer = 20;
+
+
+
+
 
 }

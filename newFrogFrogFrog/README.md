@@ -19,8 +19,13 @@ new features i have add:
     -make the green go up by 127.5 each time cliking 
 
 4) create object that is other the fly. (you eat it , you die)
+    -create a random number picker that pick number between 0-2. each number lead to different object, which 2 will lead to an object and the rest will lead to fly
 
 5) a new game over situation (YOU EAT WHAT YOU ARE NOT SUPPOSED TO EAT  )
+     -create a boolean if player eat the object, then it will lead to the gameover message.
+
+6) a restart game function
+    -create a buttom for start the game. The bottom will appear when the gamm over message pop out!
 
 ## Credits
 
@@ -34,4 +39,4 @@ This project uses [p5.js](https://p5js.org).
 
 This bit should attribute any assets or other elements used taken from other sources. For example:
 
-The fish images were sourced from the [Creative Commons image "Georgia Aquarium Fish"](https://search.creativecommons.org/photos/96f6f770-eac1-488c-8abb-16bee7bcc874) by Mike Johnston which is licensed with CC BY 2.0. To view a copy of this license, visit https://creativecommons.org/licenses/by/2.0/.
+the apple image was spirced from the apple [apple logo](https://freebiesupply.com/logos/apple-logo/)
