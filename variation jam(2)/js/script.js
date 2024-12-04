@@ -190,7 +190,7 @@ function update() {
     });
 
 
-    if (selectedSign && player.x === food.x && player.y === food.y) {
+    if (selectedSign && player.x === food.x && player.y === food.y) {            //giving the math symbol actual functions
       switch (selectedSign.operation) {
         case '+':
           currentMathValue += foodValue;
