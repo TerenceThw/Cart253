@@ -1,19 +1,19 @@
 /**
  * Escape the enemy
  * Terence Tang
- * 
+ *
  * Remember Aesop’s fable? Now you’re the busy little ant, hustling to stash 32 pieces of food before winter comes!
- * But watch out—that pesky grasshopper is out to mess with you. If it bumps into you, 
+ * But watch out—that pesky grasshopper is out to mess with you. If it bumps into you,
  * it’s game over. Will you gather it all before the cold sets in?
- * 
+ *
  * Controls:
  * use left, right,up and down arrow to move the character and store the foods.
  * click enter to start the game
- * 
- * 
+ *
+ *
  * Uses:the iss
  * p5.js
- * 
+ *
  */
 
 
@@ -51,17 +51,17 @@ function setup() {
   generateFoods();                                                              //put inside setup, so taht food won't keep randomly geenrate
 }
 
-function foodLocationCheck(foodX,foodY){                                                //this need to sepreate out with locationCAHECK becasue, food cant be generate next to the board, while player and grasshopper can
- 
+function foodLocationCheck(foodX, foodY) {                                                //this need to sepreate out with locationCheck  becasue, food cant be generate next to the board, while player and grasshopper can
+
   if (foodX === player.x && foodY === player.y) return true;
   if (foodX === enemy.x && foodY === enemy.y) return true;
   if (board[foodX][foodY] !== 0) return true;
 
   if (foodX <= 0 || foodX >= colms - 1 || foodY <= 0 || foodY >= rows - 1) return true;
-  
+
   return false;
 
-}  
+}
 
 
 /**
@@ -76,11 +76,11 @@ function generateFoods() {
       foodY = int(random(0, rows));
     } while (foodLocationCheck(foodX, foodY));
 
-    foods.push({ 
+    foods.push({
       pos: createVector(foodX, foodY),
-       value: getRandomFoodValue() 
-      });
-      
+      value: getRandomFoodValue()
+    });
+
     board[foodX][foodY] = foods[foods.length - 1].value;
   }
 }
@@ -124,12 +124,12 @@ function draw() {
 /**
  *show the game instruction
  */
- function showInstructions() {                                   
+function showInstructions() {
   background(255);
   textAlign(CENTER, CENTER);
   fill(192, 0, 0);
   textSize(46);
-  text("Cold Survival", width / 2, height / 3);  
+  text("Cold Survival", width / 2, height / 3);
 
   textSize(18);
   fill(0, 0, 0);
@@ -147,7 +147,7 @@ function draw() {
  *start the game
  */
 function playGame() {
-  if (gameOver) return;      
+  if (gameOver) return;
   background(225);
   drawBoard();
   update();
@@ -164,7 +164,7 @@ function update() {
   let nextPos = createVector(player.x + dir.x, player.y + dir.y);   //update player direction
 
   if (nextPos.x < 0 || nextPos.x > colms - 1 || nextPos.y < 0 || nextPos.y > rows - 1) {   // if player touch the board
-   
+
     return;
   }
 
@@ -179,7 +179,7 @@ function update() {
     let foodNextX = nextPos.x + dir.x;                              //move food according to player's movement
     let foodNextY = nextPos.y + dir.y;
 
-    if (foodNextX >= 0 && foodNextX < colms && foodNextY >= 0 && foodNextY < rows) {                    
+    if (foodNextX >= 0 && foodNextX < colms && foodNextY >= 0 && foodNextY < rows) {
 
       let targetFoodIndex = foods.findIndex(f => f.pos.x === foodNextX && f.pos.y === foodNextY);       //check if there's food on the location where you push the food
 
@@ -194,16 +194,16 @@ function update() {
           let newFoodX, newFoodY;                                                              // create new food ,after two food are combined 
           do {
             newFoodX = int(random(0, colms));
-            newFoodY = int(random(0,rows));
+            newFoodY = int(random(0, rows));
 
           } while (positionCheck(newFoodX, newFoodY));                                         //check if theres food on the same location
 
-          foods.push ({                                                                        
+          foods.push({
             pos: createVector(newFoodX, newFoodY),
             value: getRandomFoodValue()
 
           });
-          board[newFoodX][newFoodY] = foods[foods.length-1].value;
+          board[newFoodX][newFoodY] = foods[foods.length - 1].value;
 
           if (newValue >= 32) {                                                                    //check if the win condition is meet
             gameWon = true;
@@ -235,7 +235,7 @@ function update() {
  */
 function enemyMovement() {
 
- 
+
   if (timeCount > 0) {                                   //count 100 before it start chasing the player
     timeCount -= 1;
     return;
@@ -280,11 +280,11 @@ function enemyMovement() {
   }
   board[enemy.x][enemy.y] = -1;
   if (enemy.x === player.x && enemy.y === player.y) {              //if emepy touches player, the game is over
-   if(!gameWon){                                                   //to make sure gaover will appear after gameWon
-    gameOver = true; 
-    return;           
+    if (!gameWon) {                                                   //to make sure gaover will appear after gameWon
+      gameOver = true;
+      return;
+    }
   }
-}
 }
 
 
