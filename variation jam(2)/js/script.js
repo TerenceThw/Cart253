@@ -102,7 +102,7 @@ function generateMathSigns() {
 /**
  *show the game instruction
  */
- function showInstructions() {
+function showInstructions() {
   background(200); // Set a light gray background
   textAlign(CENTER, CENTER); // Ensure all text is horizontally and vertically centered
   fill(192, 0, 0);
@@ -121,7 +121,7 @@ function generateMathSigns() {
   text("Touch the edge, you die", width / 2, startHeight + 2 * lineSpacing);
   fill(0, 255, 0);
   text("Touch math symbols first", width / 2, startHeight + 3 * lineSpacing);
-  fill(0,177,255 );
+  fill(0, 177, 255);
   text("Then eat the food to score", width / 2, startHeight + 4 * lineSpacing);
   fill(0, 0, 0);
   text("Score to win: " + score, width / 2, startHeight + 5 * lineSpacing);
@@ -168,7 +168,7 @@ function update() {
   }
 
   bombMovement();
-  if (player.x === bomb.x && player.y===bomb.y) {                        
+  if (player.x === bomb.x && player.y === bomb.y) {
     gameOver = true;
 
   } else {
@@ -279,7 +279,7 @@ function drawBoard() {
         fill(255, 255, 0);
 
       } else {
-        fill(0,177,255 );
+        fill(0, 177, 255);
       }
 
       rect(i * size, j * size, size, size);
@@ -369,7 +369,7 @@ function resetGame() {
  *show the gameOver mesasge
  */
 function showGameOver() {
-  background(255, 205, 0); 
+  background(255, 205, 0);
   textAlign(CENTER, CENTER);
   fill(192, 0, 0);
   textSize(32);
@@ -383,7 +383,7 @@ function showGameOver() {
  *show the gameWon mesasge
  */
 function showGameWon() {
-  background(255, 205, 0);  
+  background(255, 205, 0);
   textAlign(CENTER, CENTER);
   fill(0);
   textSize(32);
