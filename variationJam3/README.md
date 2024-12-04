@@ -1,16 +1,15 @@
 # Template p5 Project
 
-terence Tnag
-Cold Survival
+Author Name
 
 [View this project online](URL_FOR_THE_RUNNING_PROJECT)
 
 ## Description
 
 this version is based on the first variation, instead of a upgrade of the variation 2. In this varaition, i have 
-implemented a new feature that is similar to the game 2048. Instead of eating the food, you have to push the food 
+implemented a new feature that is similar to the game 2048. Instead of eatching the food, you have to push the food 
 with the same value together, in order to win the game. While you try to acheive the goal, your enemy will follow you. if it touches you, you lost.
-- one game issue i have notice : food may all generate next to the board and may lead to a no winnable siutation.I have fixed the issue by not allowing food generate next to the board. 
+- one game issue i have notice : when player push all the food to the board and may lead to a no winnable siutation.I have considered correct this issue by not letting food generate next to the board. 
 -it seems really hard to win the game, but there are a few strategies you can apply and you will instanly win the game!
 
 ## Credits
