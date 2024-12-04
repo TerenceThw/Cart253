@@ -1,6 +1,7 @@
 # Template p5 Project
 
-Author Name
+Terence Tang
+BOOM V0.2
 
 [View this project online](URL_FOR_THE_RUNNING_PROJECT)
 
