@@ -1,5 +1,5 @@
 /**
- * Escape the enemy
+ * Cold Survival
  * Terence Tang
  *
  * Remember Aesop’s fable? Now you’re the busy little ant, hustling to stash 32 pieces of food before winter comes!
