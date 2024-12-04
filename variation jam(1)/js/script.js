@@ -62,7 +62,7 @@ function draw() {
 
   if (gameOver) {
     showGameOver();
-  }else if (gameWon){
+  } else if (gameWon) {
     showGameWon();
   }
 }
@@ -71,7 +71,7 @@ function draw() {
 /**
  *show the game instruction
  */
-function showInstructions() {                                   
+function showInstructions() {
   background(255);
   textAlign(CENTER, CENTER);
   fill(192, 0, 0);
@@ -94,12 +94,34 @@ function showInstructions() {
 }
 
 /**
+ * randomly changing the background number
+ */
+function updateBackgroundNumber(){
+  for (let i=0;i<colms; i++){
+    for (let j = 0; j<rows; j++){
+      if (board[i][j]===0){
+        board[i][j] = int(random(3,10))
+      }
+    }
+
+  }
+
+
+}
+
+
+
+
+
+
+/**
  *start the game
  */
 function playGame() {
   if (gameOver) return;      // if gameover, stop the game
 
   background(225);
+  updateBackgroundNumber();
   board[player.x][player.y] = length;
   board[bomb.x][bomb.y] = -1;
   board[food.x][food.y] = 2;
@@ -112,7 +134,7 @@ function playGame() {
  *update the location of the player and also create game over conditions
  */
 function update() {
-  if (gameOver||gameWon) return;            // stop uddate if gameover happen
+  if (gameOver || gameWon) return;            // stop uddate if gameover happen
   player.add(dir);                // control player's direction
   bombMovement();
 
@@ -123,7 +145,7 @@ function update() {
     gameOver = true;
 
   } else if (dist(player.x, player.y, food.x, food.y) == 0) {
-    gameWon =true;
+    gameWon = true;
   } else {
 
     board[player.x][player.y] = 1 + length;          //add 1 so to make player become 2, since if player is 1, it will get remove.
@@ -150,7 +172,7 @@ function bombMovement() {
 
   if (bomb.x > player.x) {
     bomb.x -= 1;
-    
+
   } else if (bomb.x < player.x) {
     bomb.x += 1;
 
@@ -159,11 +181,11 @@ function bombMovement() {
   else if (bomb.y > player.y) {
     bomb.y -= 1;
 
-    
+
   } else if (bomb.y < player.y) {
     bomb.y += 1;
 
-  
+
   }
   board[bomb.x][bomb.y] = -1;
 
@@ -178,7 +200,7 @@ function bombMovement() {
 function removeTail() {
   for (let i = 0; i < colms; i++) {
     for (let j = 0; j < rows; j++) {
-      if (board[i][j] > 0) {
+      if (board[i][j] > 0&& board[i][j]<=2 ) {
         board[i][j] -= 1;
 
       }
@@ -208,6 +230,8 @@ function drawBoard() {
 
       } else if (board[i][j] == 2) {
         fill(0, 0, 255);
+      } else{
+        fill(255);
       }
 
       rect(i * size, j * size, size, size);
@@ -244,7 +268,7 @@ function keyPressed() {
       dir = createVector(0, 1);
     } else if (gameOver && keyCode === ENTER) {
       resetGame();
-    }else if (gameWon && keyCode === ENTER) {
+    } else if (gameWon && keyCode === ENTER) {
       resetGame();
     }
   }
@@ -263,7 +287,7 @@ function resetGame() {
   bomb = createVector(int(random(0, colms)), int(random(0, rows)));
   food = createVector(int(random(0, colms)), int(random(0, rows)));
   timeCount = 30;
-  length =1;
+  length = 1;
   dir = createVector(0, 0);
 
   for (let i = 0; i < colms; i++) {          //reset the grid, in order to prevent multiple bomb appear.
@@ -276,7 +300,7 @@ function resetGame() {
 /**
  *show the gameOver mesasge
  */
- function showGameOver() {
+function showGameOver() {
   background(204, 153, 0);
   textAlign(CENTER, CENTER);
   fill(192, 0, 0);
@@ -290,7 +314,7 @@ function resetGame() {
 /**
  *show the gameWon mesasge
  */
-function showGameWon(){
+function showGameWon() {
   background(0, 74, 173);
   textAlign(CENTER, CENTER);
   fill(139, 0, 0);
