@@ -26,7 +26,7 @@ let bomb;
 let food;
 let player;
 let dir;                 //direction of the player
-let timeCount = 30;      //counte when the bomb will start chasing the player 
+let timeCount = 10;      //counte when the bomb will start chasing the player 
 let length = 1;
 
 
@@ -105,14 +105,7 @@ function updateBackgroundNumber(){
     }
 
   }
-
-
 }
-
-
-
-
-
 
 /**
  *start the game
@@ -161,7 +154,7 @@ function update() {
  */
 function bombMovement() {
 
-  //count 30 before it start chasing the player
+  //count 1sec before it start chasing the player
   if (timeCount > 0) {
     timeCount -= 1;
     return;
@@ -286,7 +279,7 @@ function resetGame() {
   player = createVector(int(random(0, colms)), int(random(0, rows)));
   bomb = createVector(int(random(0, colms)), int(random(0, rows)));
   food = createVector(int(random(0, colms)), int(random(0, rows)));
-  timeCount = 30;
+  timeCount = 10;
   length = 1;
   dir = createVector(0, 0);
 
